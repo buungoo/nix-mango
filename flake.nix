@@ -13,11 +13,6 @@
     inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  inputs.vicinae = {
-    url = "github:vicinaehq/vicinae";
-    inputs.nixpkgs.follows = "nixpkgs";
-  };
-
   inputs.wshowkeys = {
     url = "github:DreamMaoMao/wshowkeys";
     inputs.nixpkgs.follows = "nixpkgs";

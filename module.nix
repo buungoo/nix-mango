@@ -3,9 +3,7 @@ inputs: {
   pkgs,
   wlib,
   ...
-}: let
-  vicinae = inputs.vicinae.packages.${pkgs.stdenv.hostPlatform.system}.default;
-in {
+}: {
   imports = [
     wlib.wrapperModules.mangowc
     ./features/leader
@@ -15,6 +13,10 @@ in {
   config.package = inputs.mangowm.packages.${pkgs.stdenv.hostPlatform.system}.mango;
 
   # Mango config
+  config.settings.bind = [
+    "SUPER,d,spawn,${lib.getExe pkgs.fuzzel}"
+  ];
+
   config.sourcedFiles = [
     ./config/appearance.conf
     ./config/animations.conf
@@ -27,12 +29,10 @@ in {
   # Startup components, pinned to exact binaries and shipped with the config
   config.autostart_sh = ''
     ${lib.getExe pkgs.waybar} &
-    ${lib.getExe vicinae} server &
   '';
 
   # DE utilities on mango's PATH
   config.runtimePkgs = [
     pkgs.waybar
-    vicinae
   ];
 }
