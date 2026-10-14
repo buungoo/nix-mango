@@ -17,6 +17,7 @@ inputs: {
     "SUPER,d,spawn,${lib.getExe pkgs.fuzzel}"
   ];
 
+  # These files are copied into the Nix store; edits require a rebuild.
   config.sourcedFiles = [
     ./config/appearance.conf
     ./config/animations.conf
